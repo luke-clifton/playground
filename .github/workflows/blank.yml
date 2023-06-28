@@ -26,19 +26,8 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a set of commands using the runners shell
-      - uses: actions/github-script@v6
-        id: script
-        timeout-minutes: 10
-        with:
-          debug: true
-          script: |
-            const token = process.env['ACTIONS_RUNTIME_TOKEN']
-            const runtimeUrl = process.env['ACTIONS_ID_TOKEN_REQUEST_URL']
-            core.setOutput('TOKEN', token)
-            core.setOutput('IDTOKENURL', runtimeUrl)
       - run: |
-          echo "HELLO ${{steps.script.ouputs.TOKEN}}"
-          echo "Hello ${{steps.script.outputs.IDTOKENURL}}"
-          echo "A  $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+          echo "A  $ACTIONS_ID_TOKEN_REQUEST_TOKEN" | base64
           echo "R  $ACTIONS_ID_TOKEN_REQUEST_URL"
+        curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
 
