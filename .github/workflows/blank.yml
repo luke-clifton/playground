@@ -29,5 +29,5 @@ jobs:
       - run: |
           echo "A  $ACTIONS_ID_TOKEN_REQUEST_TOKEN" | base64
           echo "R  $ACTIONS_ID_TOKEN_REQUEST_URL"
-        curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
+          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
 
