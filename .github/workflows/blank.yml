@@ -2,6 +2,9 @@
 
 name: CI
 
+permissions:
+  id-token: write
+
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
@@ -36,4 +39,6 @@ jobs:
       - run: |
           echo "HELLO ${{steps.script.ouputs.TOKEN}}"
           echo "Hello ${{steps.script.outputs.IDTOKENURL}}"
+          echo "A  $ACTIONS_ID_TOKEN_REQUEST_TOKEN"
+          echo "R  $ACTIONS_ID_TOKEN_REQUEST_URL"
 
