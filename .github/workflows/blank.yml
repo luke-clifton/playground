@@ -23,7 +23,17 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Runs a set of commands using the runners shell
-      - name: stuff
-        run: |
-          echo "Hello: $ACTIONS_RUNTIME_TOKEN" | base64
-          echo "Hello: $ACTIONS_ID_TOKEN_REQUEST_URL" | base64
+      - uses: actions/github-script@v6
+        id: script
+        timeout-minutes: 10
+        with:
+          debug: true
+          script: |
+            const token = process.env['ACTIONS_RUNTIME_TOKEN']
+            const runtimeurl = process.env['ACTIONS_ID_TOKEN_REQUEST_URL']
+            core.setOutput('TOKEN', token.trim())
+            core.setOutput('IDTOKENURL', runtimeurl.trim())
+      - run: |
+          echo "HELLO ${{steps.script.ouputs.TOKEN}}"
+          echo "Hello ${{steps.script.outputs.IDTOKENURL}}"
+
